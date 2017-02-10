@@ -52,4 +52,9 @@ describe('linkedList', function() {
   });
 
   // add more tests here to test the functionality of linkedList
+
+  it('should return undefined when trying to remove the head of an empty linked list', function() { 
+    expect(linkedList.removeHead()).to.equal(undefined);
+
+  });
 });

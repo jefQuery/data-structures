@@ -23,7 +23,7 @@ var LinkedList = function() {
       list.head = list.head.next;
       return headValue;
     } else {
-      return null;
+      return undefined;
     }
   };
 

@@ -59,8 +59,8 @@ Graph.prototype.hasEdge = function(fromValue, toValue) {
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromValue, toValue) {
-  var toNode = this._getNode(toValue);
   var fromNode = this._getNode(fromValue);
+  var toNode = this._getNode(toValue);
   toNode.nodes.push(fromNode);
   fromNode.nodes.push(toNode);
 };
@@ -71,6 +71,11 @@ Graph.prototype.removeEdge = function(fromValue, toValue) {
   var fromNode = this._getNode(fromValue);
   toNode.nodes.splice(toNode.nodes.indexOf(fromNode), 1);
   fromNode.nodes.splice(fromNode.nodes.indexOf(toNode), 1);
+};
+
+// Returns the number of edges for the node
+Graph.prototype.edgeCount = function(value) {
+  return this._getNode(value).nodes.length;
 };
 
 // Pass in a callback which will be executed on each node of the graph.

@@ -15,6 +15,18 @@ treeMethods.addChild = function(value) {
   this.children.push(node);
 };
 
+treeMethods.removeChild = function(value) {
+  for (var i = 0; i < this.children.length; i++) {
+    var node = this.children[i];
+    if (node.value === value) {
+      this.children.splice(i, 1);
+      return true;
+    }
+  }
+  return false;
+};
+
+
 treeMethods.contains = function(target) {
   for (var i = 0; i < this.children.length; i++) {
     if (this.children[i].value === target) {
