@@ -60,7 +60,10 @@ describe('linkedList', function() {
 
   });
 
-  // Snapshot size changed from 4.6 to 4.7 MB, 100k of memory leaking
+  // Memory leak test
   // Snapshot Objects size changed from 1668 to 1664, showing no difference 
   // between before and after (exact garbage collection of linked list objects)
+  // Successful Memory Leak Test
+
+  // Should be comparing object memory size with objects and without for space complexity?
 });
