@@ -24,4 +24,9 @@ describe('set', function() {
     expect(set.contains('Mel Gibson')).to.equal(false);
   });
 
+  it('should use full input to remove values from a set', function() {
+    set.add('Mel Gibson');
+    set.remove('Mel Gibso');
+    expect(set.contains('Mel Gibson')).to.equal(true);
+  });
 });

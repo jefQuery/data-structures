@@ -36,4 +36,10 @@ describe('binarySearchTree', function() {
     binarySearchTree.depthFirstLog(func);
     expect(array).to.eql([5, 2, 3]);
   });
+
+  it('should handle a call on depthFirstLog with an empty tree', function() {
+    var array = [];
+    var func = function(value) { array.push(value); };
+    expect(binarySearchTree.depthFirstLog(func)).to.equal(undefined);
+  });
 });
