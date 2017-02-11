@@ -5,77 +5,62 @@ describe('linkedList', function() {
     linkedList = LinkedList();
   });
 
+  // it('should add to tail in constant time', function() {
+  //   var profileAdd1Tail = function() {
+  //     var count = 100000;
+  //     for (var i = 0; i < count; i++) {  
+  //       linkedList.addToTail(i);
+  //     }
+  //   };
+  //   profileAdd1Tail();
+
+  // });
+
+  // it('should add 10x tails in 10x the time', function() {
+  //   var profileAdd2Tail = function() {
+  //     var count = 1000000;
+  //     for (var i = 0; i < count; i++) {  
+  //       linkedList.addToTail(i);
+  //     }
+  //   };
+  //   profileAdd2Tail();
+  
+  // });
+
+  // it('should add 100x tails in 100x the time', function() {
+  //   var profileAdd3Tail = function() {
+  //     var count = 10000000;
+  //     for (var i = 0; i < count; i++) {  
+  //       linkedList.addToTail(i);
+  //     }
+  //   };
+  //   profileAdd3Tail();
+
+  // });
+  //            Add1    Add 2    Add3
+  //Run 1(ms):  7       88       630
+  //Run 2(ms):  8       91       658
+  //Run 3(ms):  9       101      738 
+  //Conclusion: We know the for loop creates a O(n) time complexity, and
+  //the result shows experimentally an O(n) time complexity.
+  //Therefore the nested LinkedList call contributes O(1) time complexity;
+
+  //Heap Snapshots
   it('should add to tail in constant time', function() {
     var profileAdd1Tail = function() {
-      var count = 100000;
+      var count = 10000000;
       for (var i = 0; i < count; i++) {  
         linkedList.addToTail(i);
+      }
+      for (var i = 0; i < count; i++) {  
+        linkedList.removeHead();
       }
     };
     profileAdd1Tail();
 
   });
 
-  it('should add 10x tails in 10x the time', function() {
-    var profileAdd2Tail = function() {
-      var count = 1000000;
-      for (var i = 0; i < count; i++) {  
-        linkedList.addToTail(i);
-      }
-    };
-    profileAdd2Tail();
-
-  });
-  // it('should have a head and tail', function() {
-  //   expect(linkedList).to.have.property('head');
-  //   expect(linkedList).to.have.property('tail');
-  // });
-
-  // it('should have methods named "addToTail", "removeHead", and "contains"', function() {
-  //   expect(linkedList.addToTail).to.be.a('function');
-  //   expect(linkedList.removeHead).to.be.a('function');
-  //   expect(linkedList.contains).to.be.a('function');
-  // });
-
-  // it('should designate a new tail when new nodes are added', function() {
-  //   linkedList.addToTail(4);
-  //   expect(linkedList.tail.value).to.equal(4);
-  //   linkedList.addToTail(5);
-  //   expect(linkedList.tail.value).to.equal(5);
-  // });
-
-  // it('should remove the head from the list when removeHead is called', function() {
-  //   linkedList.addToTail(4);
-  //   linkedList.addToTail(5);
-  //   expect(linkedList.head.value).to.equal(4);
-  //   linkedList.removeHead();
-  //   expect(linkedList.head.value).to.equal(5);
-  // });
-
-  // it('should return the value of the former head when removeHead is called', function() {
-  //   linkedList.addToTail(4);
-  //   expect(linkedList.removeHead()).to.equal(4);
-  // });
-
-  // it('should contain a value that was added', function() {
-  //   linkedList.addToTail(4);
-  //   linkedList.addToTail(5);
-  //   expect(linkedList.contains(4)).to.equal(true);
-  //   expect(linkedList.contains(5)).to.equal(true);
-  //   expect(linkedList.contains(6)).to.equal(false);
-  // });
-
-  // it('should not contain a value that was removed', function() {
-  //   linkedList.addToTail(4);
-  //   linkedList.addToTail(5);
-  //   linkedList.removeHead();
-  //   expect(linkedList.contains(4)).to.equal(false);
-  // });
-
-  // // add more tests here to test the functionality of linkedList
-
-  // it('should return undefined when trying to remove the head of an empty linked list', function() { 
-  //   expect(linkedList.removeHead()).to.equal(undefined);
-
-  // });
+  // Snapshot size changed from 4.6 to 4.7 MB, 100k of memory leaking
+  // Snapshot Objects size changed from 1668 to 1664, showing no difference 
+  // between before and after (exact garbage collection of linked list objects)
 });
