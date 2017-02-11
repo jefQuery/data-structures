@@ -10,6 +10,7 @@ var Graph = function() {
 Graph.prototype.addNode = function(value) {
   node = new Graph;
   node.value = value;
+
   this.nodes.push(node);
 };
 
@@ -38,11 +39,13 @@ Graph.prototype.removeNode = function(value) {
   for (var i = 0; i < this.nodes.length; i++) {
     if (this.nodes[i].value === value) {
       var nodeToRemove = this.nodes[i];
+
       for (var j = 0; j < nodeToRemove.nodes.length; j++) {
         var targetArray = nodeToRemove.nodes[j].nodes;
-        // this.removeEdge(nodeToRemove.nodes[j].value, nodeToRemove.value);
+
         targetArray.splice(targetArray.indexOf(nodeToRemove), 1);//???? O(n) || O(n^2)
       }
+
       this.nodes.splice(i, 1);
     }
   }
@@ -61,6 +64,7 @@ Graph.prototype.hasEdge = function(fromValue, toValue) {
 Graph.prototype.addEdge = function(fromValue, toValue) {
   var fromNode = this._getNode(fromValue);
   var toNode = this._getNode(toValue);
+
   toNode.nodes.push(fromNode);
   fromNode.nodes.push(toNode);
 };
@@ -69,6 +73,7 @@ Graph.prototype.addEdge = function(fromValue, toValue) {
 Graph.prototype.removeEdge = function(fromValue, toValue) {
   var toNode = this._getNode(toValue);
   var fromNode = this._getNode(fromValue);
+
   toNode.nodes.splice(toNode.nodes.indexOf(fromNode), 1);
   fromNode.nodes.splice(fromNode.nodes.indexOf(toNode), 1);
 };
@@ -82,6 +87,7 @@ Graph.prototype.edgeCount = function(value) {
 Graph.prototype.forEachNode = function(cb) {
   for (var i = 0; i < this.nodes.length; i++) {
     var item = this.nodes[i].value;
+    
     cb(item);
   }
 };

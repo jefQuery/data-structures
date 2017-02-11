@@ -1,8 +1,5 @@
-
-
-
-var HashTable = function() {
-  this._limit = 8;
+var HashTable = function(limit = 8) {
+  this._limit = limit;
   this._storage = LimitedArray(this._limit);
   this._tupleCount = 0;
 };
@@ -30,10 +27,20 @@ HashTable.prototype.insert = function(k, v) {
   // Array size management
   this._tupleCount++;
   if (this._tupleCount > 0.75 * this._limit) {
-    // Increase size of array
-    // TODO !!!
-  }
+    var newHash = new HashTable(this._limit * 2);
 
+    this._storage.each(function(oldBucket, i) {
+      if (oldBucket) {
+        for (var j = 0; j < oldBucket.length; j++) {
+          var oldTuple = oldBucket[j];
+          newHash.insert(oldTuple[0], oldTuple[1]);
+        }
+      }
+    });
+
+    this._limit = newHash._limit;
+    this._storage = newHash._storage;
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -65,6 +72,24 @@ HashTable.prototype.remove = function(k) {
       bucket.splice(i, 1);
       break;
     }
+  }
+
+  //Array mgmt., shrinking
+  this._tupleCount--;
+  if (this._tupleCount < 0.25 * this._limit) {
+    var newHash = new HashTable(this._limit / 2);
+
+    this._storage.each(function(oldBucket, i) {
+      if (oldBucket) {
+        for (var j = 0; j < oldBucket.length; j++) {
+          var oldTuple = oldBucket[j];
+          newHash.insert(oldTuple[0], oldTuple[1]);
+        }
+      }
+    });
+
+    this._limit = newHash._limit;
+    this._storage = newHash._storage;
   }
 };
 
