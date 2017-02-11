@@ -48,6 +48,43 @@ var BinarySearchTree = function(value) {
     }
   };
 
+  treeNode.breadthFirstLog = function(cb, processChildren) {
+
+    if (processChildren === undefined) {//parent node
+      cb(treeNode.value);
+      
+      if (treeNode.left !== null) {
+        treeNode.left.breadthFirstLog(cb, false);
+      }
+      if (treeNode.right !== null) {
+        treeNode.right.breadthFirstLog(cb, false);
+      }
+      if (treeNode.left !== null) {
+        treeNode.left.breadthFirstLog(cb, true);
+      }
+      if (treeNode.right !== null) {
+        treeNode.right.breadthFirstLog(cb, true);
+      }
+    } else { 
+      if (!processChildren) {
+        cb(treeNode.value);
+      } else {
+        if (treeNode.left !== null) {
+          treeNode.left.breadthFirstLog(cb, false);
+        }
+        if (treeNode.right !== null) {
+          treeNode.right.breadthFirstLog(cb, false);
+        }
+        if (treeNode.left !== null) {
+          treeNode.left.breadthFirstLog(cb, true);
+        }
+        if (treeNode.right !== null) {
+          treeNode.right.breadthFirstLog(cb, true);
+        }
+      }
+   }
+  };
+
   //var TreeNode = function(value)
   return treeNode;
 };

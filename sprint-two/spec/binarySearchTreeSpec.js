@@ -31,10 +31,16 @@ describe('binarySearchTree', function() {
   it('should execute a callback on every value in a tree using "depthFirstLog"', function() {
     var array = [];
     var func = function(value) { array.push(value); };
+
     binarySearchTree.insert(2);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
     binarySearchTree.insert(3);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+
     binarySearchTree.depthFirstLog(func);
-    expect(array).to.eql([5, 2, 3]);
+    expect(array).to.eql([5, 2, 1, 3, 7, 6, 8]);
   });
 
   it('should handle a call on depthFirstLog with an empty tree', function() {
@@ -42,4 +48,21 @@ describe('binarySearchTree', function() {
     var func = function(value) { array.push(value); };
     expect(binarySearchTree.depthFirstLog(func)).to.equal(undefined);
   });
+
+  it('should a call on breadthFirstLog in order by level', function() {
+    var array = [];
+    var func = function(value) { array.push(value); };
+    
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(1);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(8);
+
+    binarySearchTree.breadthFirstLog(func)
+    expect(array).to.eql([5, 2, 7, 1, 3, 6, 8]);
+  });
+
+
 });
